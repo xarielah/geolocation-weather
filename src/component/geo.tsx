@@ -7,7 +7,7 @@ export default function Geo({ lat, lon }: { lat: number; lon: number }) {
 
   useEffect(() => {
     setLoading(true);
-    const geo = fetch(
+    fetch(
       `${
         import.meta.env.DEV
           ? "http://localhost:3000/"

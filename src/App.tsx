@@ -5,7 +5,6 @@ import Geo from "./component/geo";
 
 function App() {
   const [geo, setGeo] = useState<{ lat: number; lon: number }>();
-  console.log("🚀 ~ App ~ geo:", geo);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
