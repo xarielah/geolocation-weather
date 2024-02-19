@@ -10,8 +10,8 @@ export default function Geo({ lat, lon }: { lat: number; lon: number }) {
     fetch(
       `${
         import.meta.env.DEV
-          ? "http://localhost:3000/"
-          : "https://nestjs-weather-app.onrender.com/"
+          ? "http://localhost:3000"
+          : "https://nestjs-weather-app.onrender.com"
       }/weather?lon=${lon}&lat=${lat}`
     )
       .then((res) => res.json())
