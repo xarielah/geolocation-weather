@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import "./App.css";
 import Geo from "./component/geo";
 
 function App() {
   const [geo, setGeo] = useState<{ lat: number; lon: number }>();
-  useEffect(() => {
+
+  // We use useCallback to avoid creating a new function every time the component renders
+  const askGeo = useCallback(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         setGeo({
@@ -14,9 +16,17 @@ function App() {
         });
       });
     } else {
+      alert("Geolocation must be enabled to use this app");
     }
   }, []);
-  return <>{geo ? <Geo lon={geo.lon} lat={geo.lat} /> : <div>No Geo</div>}</>;
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      askGeo();
+    }
+  }, []);
+  if (!geo) return <>Allow your location on settings</>;
+  return <Geo lon={geo.lon} lat={geo.lat} />;
 }
 
 export default App;

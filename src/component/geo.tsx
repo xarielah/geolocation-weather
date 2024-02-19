@@ -20,10 +20,8 @@ export default function Geo({ lat, lon }: { lat: number; lon: number }) {
         setLoading(false);
       });
   }, []);
-  return (
-    <article>
-      {loading ? "LOADING" : ""}
-      {data && !loading ? <GeoData data={data} /> : "No data"}
-    </article>
-  );
+
+  if (loading) return <>Loading your location</>;
+  if (!data) return <>Allow location to see weather</>;
+  return <GeoData data={data} />;
 }
