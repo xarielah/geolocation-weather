@@ -23,7 +23,7 @@ export default function Geo({ lat, lon }: { lat: number; lon: number }) {
   return (
     <article>
       {loading ? "LOADING" : ""}
-      {data ? <GeoData data={data} /> : "No data"}
+      {data && !loading ? <GeoData data={data} /> : "No data"}
     </article>
   );
 }
